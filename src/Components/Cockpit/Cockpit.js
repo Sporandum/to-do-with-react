@@ -22,7 +22,7 @@ class Cockpit extends Component {
                         aria-describedby="button-addon2"
                         value={this.props.value}
                         onChange={this.props.changed}
-                        onKeyUp={this.props.addedByInput}
+                        onKeyUp={this.props.added}
                         ref={this.inputRef} />
                     <div className="input-group-append">
                         <button 
