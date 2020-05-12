@@ -20,59 +20,55 @@ class Todo extends Component {
         ]
     }
 
-    componentDidUpdate() {
-        console.log(this.state);
-    }
-
-
     inputChangedHandler = (event) => {
         this.setState({ inputValue: event.target.value })
     }
 
-    addedHandler = () => {
+    addedHandler = (event) => {
         const inputValue = this.state.inputValue;
         const listItems = [...this.state.listItems];
+
+        if (event.type === 'keyup' && event.key !== 'Enter') return;
+
         if (inputValue) {
             listItems.push({ content: inputValue });
             this.setState({ inputValue: '', listItems: listItems });
         }
     }
 
-    addedByInputHandler = event => {
-        if (event.key === 'Enter') {
-            this.addedHandler();
-        }
-    }
+    listFocusHandler = (event, index, focus) => {
+        const listItems = [...this.state.listItems];
 
-    editedHandler = (event, index) => {
-        if (this.state.listItems[index].content) {
-            const listItems = [...this.state.listItems];
-            listItems[index].edited = !listItems[index].edited;
-            this.setState({listItems: listItems})
+        if (event.type === 'keyup' && event.key !== 'Enter') return;
+
+        if (focus) {
+            listItems[index].edited = true;
+        } else {
+            listItems[index].edited = false;
         }
+
+        this.setState({ listItems: listItems });
     }
 
     listChangedHandler = (event, index) => {
         const listItems = [...this.state.listItems];
         listItems[index].content = event.target.value;
-        this.setState({listItems: listItems});
+        this.setState({ listItems: listItems });
     }
-    
+
     listDeletedHandler = (event, index) => {
         const listItems = [...this.state.listItems];
         if (listItems[index]) {
             listItems.splice(index, 1);
         }
-        this.setState({listItems: listItems});
+        this.setState({ listItems: listItems });
     }
-
-     
 
     render() {
         return (
             <React.Fragment>
-                <Cockpit value={this.state.inputValue} changed={this.inputChangedHandler} added={this.addedHandler} addedByInput={this.addedByInputHandler} />
-                <List listItems={this.state.listItems} edited={this.editedHandler} changed={this.listChangedHandler} deleted={this.listDeletedHandler}/>
+                <Cockpit value={this.state.inputValue} changed={this.inputChangedHandler} added={this.addedHandler} />
+                <List listItems={this.state.listItems} focused={this.listFocusHandler} changed={this.listChangedHandler} deleted={this.listDeletedHandler} />
             </React.Fragment>
         );
     }

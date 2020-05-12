@@ -22,8 +22,9 @@ class List extends Component {
                                 className={item.edited ? "form-control" : "form-control-plaintext"}
                                 value={item.content}
                                 onChange={(event) => this.props.changed(event, i)}
-                                onFocus={(event) => this.props.edited(event, i)}
-                                onBlur={(event) => this.props.edited(event, i)}
+                                onFocus={(event) => this.props.focused(event, i, true)}
+                                onBlur={(event) => this.props.focused(event, i, false)}
+                                onKeyUp={(event) => this.props.focused(event, i, false)}
                                 ref={el => this.inputsRef.push(el)}
                             />
                             <button
@@ -49,11 +50,6 @@ class List extends Component {
             </div>
         );
     }
-
-
-
-
-
 };
 
 export default List;
