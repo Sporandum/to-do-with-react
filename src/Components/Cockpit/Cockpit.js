@@ -6,9 +6,6 @@ class Cockpit extends Component {
 
     inputFocus = () => this.inputRef.current.focus();
 
-    componentDidUpdate() {
-        this.inputFocus();
-    }
     componentDidMount() {
         this.inputFocus();
     }
