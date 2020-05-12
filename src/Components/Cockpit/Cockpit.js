@@ -13,11 +13,11 @@ class Cockpit extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="input-group mb-3">
+                <div className="input-group mb-5">
                     <input
                         type="text"
                         className="form-control"
-                        placeholder=""
+                        placeholder="Tapez quelque chose..."
                         aria-label=""
                         aria-describedby="button-addon2"
                         value={this.props.value}

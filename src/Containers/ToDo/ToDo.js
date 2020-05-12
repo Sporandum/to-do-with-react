@@ -71,7 +71,7 @@ class Todo extends Component {
     render() {
         return (
             <React.Fragment>
-                <Cockpit value={this.state.inputValue} changed={this.inputChangedHandler} added={this.addedHandler} addedByInput={this.addedByInputHandler} inputRef={this.inputRef} />
+                <Cockpit value={this.state.inputValue} changed={this.inputChangedHandler} added={this.addedHandler} addedByInput={this.addedByInputHandler} />
                 <List listItems={this.state.listItems} edited={this.editedHandler} changed={this.listChangedHandler} deleted={this.listDeletedHandler}/>
             </React.Fragment>
         );
